@@ -1,4 +1,4 @@
-# 101 symmetric-tree/
+#101 symmetric-tree/
 # Definition for a binary tree node.
 # class TreeNode(object):
 #     def __init__(self, x):
@@ -11,29 +11,28 @@ class Solution(object):
         """
         :type root: TreeNode
         :rtype: bool
+        [5,4,1,null,1,null,4,2,null,2,null]
+        [1,2,2,null,3,null,3]
         """
-        if root == None or root.left == root.right == None : return true
-        if root.left == None != root.right == None : return False
-        p = root.left
-        q = root.right
-        plist=[]
-        qlist=[]
+        if root == None  : return True
 
-        while p != None and q != None :
+        lstack = rstack = []
+        if root.left != None : lstack=[root.left]
+        if root.right != None : rstack=[root.right]
 
-            while p != None :
-                plist.append(p)
-                p = p.left
-            ptop = plist.pop()
-            p = ptop.right
+        while len(lstack) > 0  and len(rstack) > 0 :
 
-            while q != None :
-                qlist.append(q)
-                q = q.left
-            qtop = qlist.pop()
-            q = qtop.right
+            p = lstack.pop()
+            q = rstack.pop()
 
-            if ptop.val != qtop.val:
-                return False
+            if p.val != q.val : return False
+            if ( (p.left == None) != (q.right == None )  or ( p.right == None) != (q.left == None) ): return False
 
-        return plist == qlist
+            if (p.right != None) : lstack.append( p.right)
+            if (p.left != None) :  lstack.append( p.left )
+
+            if (q.left !=None ) :  rstack.append( q.left )
+            if (q.right != None) : rstack.append( q.right )
+
+
+        return lstack == rstack
