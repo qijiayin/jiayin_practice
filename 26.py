@@ -4,24 +4,15 @@ class Solution(object):
         """
         :type nums: List[int]
         :rtype: int
-        [0, i-1] done
-        [i, j-1] duplicate
-        [j, n-1] todo
+        [0,i-1] done
+        [j,n-1] todo
+        len : i+1
         """
-        if len(nums) <= 1 : return len(nums)
+        if len(nums) < 2 : return len(nums)
         i = 0
-        j = 1
-        n = len(nums)
-        while j < n :
-            while j < n and nums[i] == nums[j]:
-                j += 1
-            idx = i + 1
-            for k  in range(j, n):
-                nums[idx] = nums[k]
-                idx += 1
+        for j in range(1, len(nums)) :
+            if nums[j] != nums[i] :
+                nums[i+1] = nums[j]
+                i += 1
 
-            n -= (j - i -1)
-            i += 1
-            j = i + 1
-
-        return n
+        return i+1
