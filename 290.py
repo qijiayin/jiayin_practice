@@ -12,8 +12,10 @@ class Solution(object):
         if str == "" :
             return pattern == ""
         if pattern == "":
-            return True
-        strmap = {}
+            return str == ""
+        ptn_map_str = {}
+        str_map_ptn = {}
+
         beg = 0
         end = 0
         for p in pattern :
@@ -26,9 +28,16 @@ class Solution(object):
             beg = end
             if s == "" :
                 return False
-            print s,p
-            if p not in strmap.keys() :
-                strmap[p] = s
-            elif s != strmap[p] :
+
+            if p not in ptn_map_str.keys() :
+                ptn_map_str[p] = s
+
+            elif s != ptn_map_str[p] :
                 return False
+
+            if s not in str_map_ptn.keys():
+                str_map_ptn[s] = p
+            elif p != str_map_ptn[s] :
+                return False
+
         return beg == len(str)
