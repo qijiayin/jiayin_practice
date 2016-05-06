@@ -1,4 +1,4 @@
-#38 count-and-say/
+#38 count-and-say/ 写错了好多次，有没有秘诀啊
 class Solution(object):
     def countAndSay(self, n):
         """
