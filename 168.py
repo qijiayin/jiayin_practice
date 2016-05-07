@@ -1,10 +1,6 @@
 #168 excel-sheet-column-title/
 class Solution(object):
-    def getChar(self, val):
-        if val == 0 :
-            return ''
 
-        return chr(val - 1  + ord('A'))
 
     def convertToTitle(self, n):
         """
@@ -15,8 +11,8 @@ class Solution(object):
 
         res = ""
         while n > 0 :
-            val = n % 26
-            res += self.getChar(val)
-            n /= 26
 
-        return res[::-1]
+            res = chr((n - 1) % 26  + ord('A')) + res
+            n = (n - 1) / 26
+        return res
+        
