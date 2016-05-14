@@ -1,4 +1,5 @@
 #318 maximum-product-of-word-lengths/
+
 class Solution(object):
     def hasCommon(self,r1, r2):
         for i in range(256) :
@@ -28,6 +29,6 @@ class Solution(object):
                 if self.hasCommon(record[i], record[j]) == True :
                     continue
                 else:
-                    print i, j
+                    
                     maxVal = max(maxVal, len(words[i]) * len(words[j]) )
         return maxVal
