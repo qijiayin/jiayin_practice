@@ -17,6 +17,8 @@ class Solution(object):
         res = []
         stack = []
         p = root
+
+        
         while len(stack) > 0   or  p != None :
             while p != None:
                 stack.append(p)
