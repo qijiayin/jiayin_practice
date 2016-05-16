@@ -1,4 +1,5 @@
 #35 search-insert-position/
+
 class Solution(object):
     def search(self, nums, target, beg, end):
         if beg > end :
