@@ -2,10 +2,10 @@
 # Definition for binary tree with next pointer.
 import collections
 class TreeNode(object):
-    def __init__(self, x):
+    def __init__(self, x,left=None, right=None):
         self.val = x
-        self.left = None
-        self.right = None
+        self.left = left
+        self.right = right
         self.next = None
 
 class Solution(object):
@@ -17,13 +17,13 @@ class Solution(object):
 
         if root == None:
             return
-        cur_que = next_que = collections.deque()
+        cur_que = collections.deque()
+        next_que = collections.deque()
         cur_que.append(root)
         #for y in cur_que: print y.val
         while len(cur_que) > 0 :
             next_que.clear()
             pre_node = None
-            for y in cur_que: print y.val
             while len(cur_que) > 0:
                 node = cur_que[0]
                 if node.left != None:
@@ -35,11 +35,18 @@ class Solution(object):
                 if pre_node != None:
                     pre_node.next = x
                 pre_node = x
-            for y in next_que: print y.val
-            cur_que = next_que
+
+            cur_que.clear()
+            for x  in next_que:
+                cur_que.append(x)
+
 
 root = TreeNode(1)
 root.left = TreeNode(2)
 root.right= TreeNode(3)
+root.left.left = TreeNode(4)
+root.left.right = TreeNode(5)
+root.right.left= TreeNode(6)
+root.right.right= TreeNode(7)
 s= Solution()
 s.connect(root)
